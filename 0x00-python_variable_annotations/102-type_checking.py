@@ -1,11 +1,11 @@
 #!/usr/bin/env python3
 """Module to zoom in on an array based on a specified factor."""
-
 from typing import List, Tuple
+
 
 def zoom_array(lst: Tuple, factor: int = 2) -> List:
     """Creates multiple copies of items in a tuple.
-    
+
     Args:
         lst (Tuple): A tuple of items.
         factor (int): The number of times to repeat each item.
@@ -18,6 +18,7 @@ def zoom_array(lst: Tuple, factor: int = 2) -> List:
         for _ in range(factor)
     ]
     return zoomed_in
+
 
 array = (12, 72, 91)
 
