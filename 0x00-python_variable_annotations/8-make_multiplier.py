@@ -2,9 +2,8 @@
 """
 Module to create a multiplier function.
 """
-
-
 from typing import Callable
+
 
 def make_multiplier(multiplier: float) -> Callable[[float], float]:
     """
@@ -12,5 +11,5 @@ def make_multiplier(multiplier: float) -> Callable[[float], float]:
     """
     def multiply(value: float) -> float:
         return multiplier * value
-    
+
     return multiply
