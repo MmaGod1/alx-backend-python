@@ -1,32 +1,18 @@
 #!/usr/bin/env python3
 """
-This module contains an asynchronous coroutine that spawns multiple
-wait_random calls and returns their delays in ascending order.
+This module contains a function to measure the execution time of wait_n.
 """
 
 import asyncio
-wait_random = __import__('0-basic_async_syntax').wait_random
+import time
+from 1-concurrent_coroutines import wait_n
 
 
-async def wait_n(n: int, max_delay: int) -> list[float]:
+def measure_time(n: int, max_delay: int) -> float:
     """
-    Spawn wait_random n times with the specified max_delay and
-    return the list of all delays in ascending order.
+    Measure the average execution time of wait_n(n, max_delay).
     """
-    delays = []
-    for i in range(n):
-        delays.append(await wait_random(max_delay))
-
-    sorted_delays = []
-    for delay in delays:
-        if not sorted_delays:
-            sorted_delays.append(delay)
-        else:
-            for j in range(len(sorted_delays)):
-                if delay < sorted_delays[j]:
-                    sorted_delays.insert(j, delay)
-                    break
-            else:
-                sorted_delays.append(delay)
-
-    return sorted_delays
+    start_time = time.perf_counter()
+    asyncio.run(wait_n(n, max_delay))
+    total_time = time.perf_counter() - start_time
+    return total_time / n
