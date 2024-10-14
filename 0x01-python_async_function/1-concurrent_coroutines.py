@@ -1,18 +1,15 @@
 #!/usr/bin/env python3
-"""
-This module contains a function to measure the execution time of wait_n.
+"""Module for executing wait_random multiple times.
 """
 
 import asyncio
-import time
-from 1-concurrent_coroutines import wait_n
+from typing import List
+wait_random = __import__('0-basic_async_syntax').wait_random
 
 
-def measure_time(n: int, max_delay: int) -> float:
+async def wait_n(n: int, max_delay: int) -> List[float]:
+    """Executes wait_random a specified number of times and returns delays.
     """
-    Measure the average execution time of wait_n(n, max_delay).
-    """
-    start_time = time.perf_counter()
-    asyncio.run(wait_n(n, max_delay))
-    total_time = time.perf_counter() - start_time
-    return total_time / n
+    tasks = [wait_random(max_delay) for _ in range(n)]
+    wait_times = await asyncio.gather(*tasks)
+    return sorted(wait_times)
