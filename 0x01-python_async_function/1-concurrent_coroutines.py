@@ -5,7 +5,7 @@ wait_random calls and returns their delays in ascending order.
 """
 
 import asyncio
-from 0-basic_async_syntax import wait_random
+wait_random = __import__('0-basic_async_syntax').wait_random
 
 
 async def wait_n(n: int, max_delay: int) -> list[float]:
